@@ -14,6 +14,12 @@
       action = "<cmd>HopWord<CR>";
       options.desc = "Go to an word in the current buffer";
     }
+    {
+      mode = "n";
+      key = "f";
+      action = "<cmd>HopWord<CR>";
+      options.desc = "Go to an word in the current buffer";
+    }
     # Buffer
     {
       mode = "n";
@@ -27,6 +33,12 @@
       action = "<cmd>bp<CR>";
       options.desc = "Go to prev buffer";
     }
+    # / Find Deselection 
+    {
+      mode = "n";
+      key = "<ESC><ESC>";
+      action = ":nohlsearch<CR>";
+      options.desc = "Unselect Search Results";
+    }
   ];
-  plugins.which-key.enable = true;
 }

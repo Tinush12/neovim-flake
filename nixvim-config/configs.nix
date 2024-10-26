@@ -11,7 +11,7 @@
       autowrite = true;
       confirm = true;
       clipboard = "unnamedplus";
-      cursorline = true;
+      cursorline = false;
       list = true;
       expandtab = true;
       shiftround = true;

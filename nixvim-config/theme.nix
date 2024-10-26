@@ -1,7 +1,7 @@
 {
   colorschemes = {
     onedark = {
-      enable = true;
+      enable = false;
       settings = {
         colors = {yellow = "#d9a950";};
         style = "dark";
@@ -9,7 +9,7 @@
       };
     };
     kanagawa = {
-      enable = false;
+      enable = true;
       settings = {
         colors = {
           theme = {
@@ -20,7 +20,7 @@
         };
         commentStyle.italic = true;
         theme = "wave"; # wave lotus
-        transparent = false;
+        transparent = true;
       };
     };
   };

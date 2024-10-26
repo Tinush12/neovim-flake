@@ -23,18 +23,6 @@
           action = "git_status";
           options.desc = "Git Status";
         };
-        "<leader>s\"" = {
-          action = "registers";
-          options.desc = "Registers";
-        };
-        "<leader>sd" = {
-          action = "diagnostics_document";
-          options.desc = "Document Diagnostics";
-        };
-        "<leader>sD" = {
-          action = "diagnostics_workspace";
-          options.desc = "Workspace Diagnostics";
-        };
         "<leader>sh" = {
           action = "help_tags";
           options.desc = "Help Pages";
