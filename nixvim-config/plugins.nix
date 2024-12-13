@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{ ... }: {
   plugins = {
     hop.enable = true;
 
@@ -22,11 +20,12 @@
       enable = true;
       modules = {
         indentscope = {
-          symbol = "│";
+          symbol = "│"; 
           options = { try_as_border = true; };
         };
       };
     };
+    web-devicons.enable = true;
 
     which-key.enable = true; # Info for Keybinds
     nvim-autopairs.enable = true;
@@ -42,7 +41,7 @@
         }
         {
           type = "text";
-          val = [ "Welcome to NixVim, Lukas!" ];
+          val = [ "Welcome to NixVim!" ];
           opts = {
             position = "center";
             hl = "Type";
@@ -63,30 +62,8 @@
     #  markBranch = true;
     #};
 
-    #gitsigns = {
-    #  enable = true;
-    #  settings = {
-    #    current_line_blame = true;
-    #    current_line_blame_opts = {
-    #      virt_text = true;
-    #      virt_text_pos = "eol";
-    #    };
-    #    signcolumn = true;
-    #    signs = {
-    #      add = { text = "│"; };
-    #      change = { text = "│"; };
-    #      changedelete = { text = "~"; };
-    #      delete = { text = "_"; };
-    #      topdelete = { text = "‾"; };
-    #      untracked = { text = "┆"; };
-    #    };
-    #    watch_gitdir = { follow_files = true; };
-    #  };
-    #};
-
     #luasnip.enable = true;
     #render-markdown.enable = true;
-    #web-devicons.enable = true;
     #auto-save.enable = true;
   };
 }

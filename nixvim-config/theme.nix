@@ -1,15 +1,15 @@
 {
   colorschemes = {
     onedark = {
-      enable = false;
+      enable = true;
       settings = {
-        colors = {yellow = "#d9a950";};
+        colors = { yellow = "#d9a950"; };
         style = "dark";
         transparent = true;
       };
     };
     kanagawa = {
-      enable = true;
+      enable = false;
       settings = {
         colors = {
           theme = {

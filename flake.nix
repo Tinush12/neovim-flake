@@ -24,7 +24,7 @@
       };
     in {
       packages = {default = nixvim';};
-
+      
       apps = {
         default = {
           type = "app";
