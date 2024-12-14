@@ -1,0 +1,162 @@
+{pkgs,...}:
+
+{
+  plugins = {
+    # Enable nvim-dap for debugging
+    dap = {
+      enable = true;
+      extensions = {
+        # UI for nvim-dap
+        dap-ui = {
+          enable = true;
+        };
+        # Virtual text for dap (shows debug info inline)
+        dap-virtual-text = {
+          enable = true;
+        };
+      };
+    };
+  };
+
+  # Keymappings for debugger
+  keymaps = [
+    # Toggle breakpoint
+    {
+      mode = "n";
+      key = "<leader>db";
+      action = ''
+        function()
+          require('dap').toggle_breakpoint()
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Toggle Breakpoint";
+      };
+    }
+    # Start debugging
+    {
+      mode = "n";
+      key = "<leader>dc";
+      action = ''
+        function()
+          require('dap').continue()
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Continue Debugging";
+      };
+    }
+    # Step over
+    {
+      mode = "n";
+      key = "<leader>do";
+      action = ''
+        function()
+          require('dap').step_over()
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Step Over";
+      };
+    }
+    # Step into
+    {
+      mode = "n";
+      key = "<leader>di";
+      action = ''
+        function()
+          require('dap').step_into()
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Step Into";
+      };
+    }
+    # Open debug UI
+    {
+      mode = "n";
+      key = "<leader>du";
+      action = ''
+        function()
+          require('dapui').toggle()
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Toggle Debug UI";
+      };
+    }
+  ];
+
+  # Additional configuration for C++ debugging
+  extraConfigLua = ''
+    local dap = require('dap')
+
+    -- Configure GDB adapter
+    dap.adapters.gdb = {
+      type = 'executable',
+      command = 'gdb',
+      args = { '-i', 'dap' }
+    }
+
+    -- Debugger configuration for C++
+    dap.configurations.cpp = {
+      {
+        name = "Launch",
+        type = "gdb",
+        request = "launch",
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = "''${workspaceFolder}",
+        stopOnEntry = true,
+        args = function()
+          local args_string = vim.fn.input("Arguments: ")
+          return vim.split(args_string, " ")
+        end,
+        env = function()
+          local variables = {}
+          for k, v in pairs(vim.fn.environ()) do
+            table.insert(variables, string.format("%s=%s", k, v))
+          end
+          return variables
+        end,
+      },
+      {
+        name = "Attach to gdbserver",
+        type = "gdb",
+        request = "attach",
+        remoteHost = "localhost",
+        remotePort = "1234",
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = "''${workspaceFolder}",
+      }
+    }
+
+    -- Setup DAP UI
+    local dapui = require('dapui')
+    dap.listeners.after.event_initialized["dapui_config"] = function()
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated["dapui_config"] = function()
+      dapui.close()
+    end
+    dap.listeners.before.event_exited["dapui_config"] = function()
+      dapui.close()
+    end
+  '';
+
+  # Ensure required packages are available
+  extraPackages = with pkgs; [
+    # Debugger for C++
+    #codelldb
+    # Optional: GDB as an alternative
+    gdb
+  ];
+}

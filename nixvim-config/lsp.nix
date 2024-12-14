@@ -7,6 +7,22 @@
         nixd = { enable = true; };
         clangd.enable = true;
         bashls.enable = true;
+        pylsp = {
+              enable = true;
+              settings.plugins = {
+                black.enabled = true;
+                flake8.enabled = true;
+                isort.enabled = true;
+                jedi.enabled = true;
+                mccabe.enabled = true;
+                pycodestyle.enabled = true;
+                pydocstyle.enabled = true;
+                pyflakes.enabled = true;
+                pylint.enabled = true;
+                rope.enabled = true;
+                yapf.enabled = true;
+              };
+        };
       };
 
       keymaps.lspBuf = {
