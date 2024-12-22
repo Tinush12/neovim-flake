@@ -2,7 +2,8 @@
   description = "NixVim Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
   };
@@ -24,7 +25,7 @@
       };
     in {
       packages = {default = nixvim';};
-      
+
       apps = {
         default = {
           type = "app";

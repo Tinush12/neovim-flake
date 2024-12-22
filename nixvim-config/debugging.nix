@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, unstable, ... }: {
   plugins = {
     cmp-dap.enable = true;
     dap = {
@@ -6,14 +6,16 @@
       extensions = {
         dap-ui = {
           enable = true;
-          floating.mappings = {close = ["<ESC>" "q"];};
+          #floating.mappings = {close = ["<ESC>" "q"];};
         };
         dap-python.enable = true;
-        dap-virtual-text = {enable = true;};
+        dap-virtual-text.enable = true;
       };
-
-      
     };
+    #dap-lldb = {
+    #  enable = true;
+    #  package = unstable.vimPlugins.nvim-dap-lldb;
+    #};
   };
 
   keymaps = [
@@ -258,15 +260,15 @@
 
 
   -- Allow DAP UI to automatically open and close when possible
-    require('dap').listeners.after.event_initialized['dapui_config'] = require('dapui').open
-    require('dap').listeners.before.event_terminated['dapui_config'] = require('dapui').close
-    require('dap').listeners.before.event_exited['dapui_config'] = require('dapui').close
+  --  require('dap').listeners.after.event_initialized['dapui_config'] = require('dapui').open
+  --  require('dap').listeners.before.event_terminated['dapui_config'] = require('dapui').close
+  --  require('dap').listeners.before.event_exited['dapui_config'] = require('dapui').close
   '';
 
   # Ensure required packages are available
   extraPackages = with pkgs; [
     # Debugger for C++
-    #codelldb
+    vscode-extensions.vadimcn.vscode-lldb
     # Optional: GDB as an alternative
     gdb
   ];

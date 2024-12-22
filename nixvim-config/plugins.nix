@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins = {
     hop.enable = true;
 
@@ -7,21 +7,24 @@
       folding = false;
       settings.indent.enable = true;
     };
-    bufferline = { # Tab line a the Top
+    bufferline = {
+      # Tab line a the Top
       enable = true;
-      settings = { options = { always_show_bufferline = false; }; };
+      settings = {options = {always_show_bufferline = false;};};
     };
-    lualine = { # Status line at the Bottom
+    lualine = {
+      # Status line at the Bottom
       enable = true;
       settings.options.globalstatus = true;
     };
 
-    mini = { # Library of 40+ Plugins for neovim
+    mini = {
+      # Library of 40+ Plugins for neovim
       enable = true;
       modules = {
         indentscope = {
-          symbol = "│"; 
-          options = { try_as_border = true; };
+          symbol = "│";
+          options = {try_as_border = true;};
         };
       };
     };
@@ -31,6 +34,7 @@
     nvim-autopairs.enable = true;
     illuminate.enable = true;
     #noice.enable = true;
+    trouble = {enable = true;};
 
     alpha = {
       enable = true;
@@ -41,7 +45,7 @@
         }
         {
           type = "text";
-          val = [ "Welcome to NixVim!" ];
+          val = ["Welcome to NixVim!"];
           opts = {
             position = "center";
             hl = "Type";
@@ -51,7 +55,6 @@
           type = "padding";
           val = 4;
         }
-
       ];
     };
     #harpoon = {
