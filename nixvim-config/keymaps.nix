@@ -33,12 +33,19 @@
       action = "<cmd>bp<CR>";
       options.desc = "Go to prev buffer";
     }
-    # / Find Deselection 
+    # / Find Deselection
     {
       mode = "n";
       key = "<ESC><ESC>";
       action = ":nohlsearch<CR>";
       options.desc = "Unselect Search Results";
+    }
+    # Terminal Buffer
+    {
+      mode = "n";
+      key = "<leader>t";
+      action = ":below 15 split | terminal<CR>";
+      options.desc = "create a termnal below";
     }
   ];
 }

@@ -2,7 +2,7 @@
   config = {
     globals.mapleader = " "; # Set leader key to space
 
-    options = {
+    opts = {
       updatetime = 100; # faster completion
       number = true;
       relativenumber = true;

@@ -1,277 +1,144 @@
-{ pkgs, unstable, ... }: {
-  plugins = {
-    cmp-dap.enable = true;
-    dap = {
-      enable = true;
-      extensions = {
-        dap-ui = {
-          enable = true;
-          #floating.mappings = {close = ["<ESC>" "q"];};
+{...}: {
+  # Shows how to use the DAP plugin to debug your code.
+  #
+  # Primarily focused on configuring the debugger for Go, but can
+  # be extended to other languages as well. That's why it's called
+  # kickstart.nixvim and not kitchen-sink.nixvim ;)
+  # https://nix-community.github.io/nixvim/plugins/dap/index.html
+  plugins.dap = {
+    enable = true;
+
+    extensions = {
+      # Creates a beautiful debugger UI
+      dap-ui = {
+        enable = true;
+
+        # Set icons to characters that are more likely to work in every terminal.
+        # Feel free to remove or use ones that you like more! :)
+        # Don't feel like these are good choices.
+        icons = {
+          expanded = "▾";
+          collapsed = "▸";
+          current_frame = "*";
         };
-        dap-python.enable = true;
-        dap-virtual-text.enable = true;
+
+        controls = {
+          icons = {
+            pause = "⏸";
+            play = "▶";
+            step_into = "⏎";
+            step_over = "⏭";
+            step_out = "⏮";
+            step_back = "b";
+            run_last = "▶▶";
+            terminate = "⏹";
+            disconnect = "⏏";
+          };
+        };
+      };
+
+      # Add your own debuggers here
+      dap-python.enable = true;
+      dap-go = {
+        enable = true;
       };
     };
-    #dap-lldb = {
-    #  enable = true;
-    #  package = unstable.vimPlugins.nvim-dap-lldb;
-    #};
   };
 
+  # https://nix-community.github.io/nixvim/keymaps/index.html
   keymaps = [
     {
       mode = "n";
-      key = "<leader>dB";
-      action = "\n        <cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>\n      ";
+      key = "<leader>Dc";
+      action.__raw = ''
+        function()
+          require('dap').continue()
+        end
+      '';
       options = {
-        silent = true;
-        desc = "Breakpoint Condition";
+        desc = "Debug: Start/Continue";
       };
     }
     {
       mode = "n";
-      key = "<leader>db";
-      action = ":DapToggleBreakpoint<cr>";
+      key = "<F1>";
+      action.__raw = ''
+        function()
+          require('dap').step_into()
+        end
+      '';
       options = {
-        silent = true;
-        desc = "Toggle Breakpoint";
+        desc = "Debug: Step Into";
       };
     }
     {
       mode = "n";
-      key = "<leader>dc";
-      action = ":DapContinue<cr>";
+      key = "<F2>";
+      action.__raw = ''
+        function()
+          require('dap').step_over()
+        end
+      '';
       options = {
-        silent = true;
-        desc = "Continue";
+        desc = "Debug: Step Over";
       };
     }
     {
       mode = "n";
-      key = "<leader>da";
-      action = "<cmd>lua require('dap').continue({ before = get_args })<cr>";
+      key = "<F3>";
+      action.__raw = ''
+        function()
+          require('dap').step_out()
+        end
+      '';
       options = {
-        silent = true;
-        desc = "Run with Args";
+        desc = "Debug: Step Out";
       };
     }
     {
       mode = "n";
-      key = "<leader>dC";
-      action = "<cmd>lua require('dap').run_to_cursor()<cr>";
+      key = "<leader>b";
+      action.__raw = ''
+        function()
+          require('dap').toggle_breakpoint()
+        end
+      '';
       options = {
-        silent = true;
-        desc = "Run to cursor";
+        desc = "Debug: Toggle Breakpoint";
       };
     }
     {
       mode = "n";
-      key = "<leader>dg";
-      action = "<cmd>lua require('dap').goto_()<cr>";
+      key = "<leader>B";
+      action.__raw = ''
+        function()
+          require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+        end
+      '';
       options = {
-        silent = true;
-        desc = "Go to line (no execute)";
+        desc = "Debug: Set Breakpoint";
       };
     }
+    # Toggle to see last session result. Without this, you can't see session output
+    # in case of unhandled exception.
     {
       mode = "n";
-      key = "<leader>di";
-      action = ":DapStepInto<cr>";
+      key = "<leader>Du";
+      action.__raw = ''
+        function()
+          require('dapui').toggle()
+        end
+      '';
       options = {
-        silent = true;
-        desc = "Step into";
+        desc = "Debug: See last session result.";
       };
-    }
-    {
-      mode = "n";
-      key = "<leader>dj";
-      action = "\n        <cmd>lua require('dap').down()<cr>\n      ";
-      options = {
-        silent = true;
-        desc = "Down";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>dk";
-      action = "<cmd>lua require('dap').up()<cr>";
-      options = {
-        silent = true;
-        desc = "Up";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>dl";
-      action = "<cmd>lua require('dap').run_last()<cr>";
-      options = {
-        silent = true;
-        desc = "Run Last";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>do";
-      action = ":DapStepOut<cr>";
-      options = {
-        silent = true;
-        desc = "Step Out";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>dO";
-      action = ":DapStepOver<cr>";
-      options = {
-        silent = true;
-        desc = "Step Over";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>dp";
-      action = "<cmd>lua require('dap').pause()<cr>";
-      options = {
-        silent = true;
-        desc = "Pause";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>dr";
-      action = ":DapToggleRepl<cr>";
-      options = {
-        silent = true;
-        desc = "Toggle REPL";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ds";
-      action = "<cmd>lua require('dap').session()<cr>";
-      options = {
-        silent = true;
-        desc = "Session";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>dt";
-      action = ":DapTerminate<cr>";
-      options = {
-        silent = true;
-        desc = "Terminate";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>du";
-      action = "<cmd>lua require('dapui').toggle()<cr>";
-      options = {
-        silent = true;
-        desc = "Dap UI";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>dw";
-      action = "<cmd>lua require('dap.ui.widgets').hover()<cr>";
-      options = {
-        silent = true;
-        desc = "Widgets";
-      };
-    }
-    {
-      mode = ["n" "v"];
-      key = "<leader>de";
-      action = "<cmd>lua require('dapui').eval()<cr>";
-      options = {
-        silent = true;
-        desc = "Eval";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>df";
-      action = "<CMD>lua require('dap.ext.vscode').load_launchjs()<CR><CMD>Telescope dap configurations<CR>";
-      options = {desc = "Debug Configurations";};
     }
   ];
 
-    # Additional configuration for C++ debugging
+  # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraconfiglua#extraconfiglua
   extraConfigLua = ''
-    local dap = require('dap')
-
-    -- Configure GDB adapter
-    dap.adapters.gdb = {
-      type = 'executable',
-      command = 'gdb',
-      args = { '-i', 'dap' }
-    }
-
-    -- Debugger configuration for C++
-    dap.configurations.cpp = {
-      {
-        name = "Launch",
-        type = "gdb",
-        request = "launch",
-        program = function()
-          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
-        cwd = "''${workspaceFolder}",
-        stopOnEntry = true,
-        args = function()
-          local args_string = vim.fn.input("Arguments: ")
-          return vim.split(args_string, " ")
-        end,
-        env = function()
-          local variables = {}
-          for k, v in pairs(vim.fn.environ()) do
-            table.insert(variables, string.format("%s=%s", k, v))
-          end
-          return variables
-        end,
-      },
-      {
-        name = "Attach to gdbserver",
-        type = "gdb",
-        request = "attach",
-        remoteHost = "localhost",
-        remotePort = "1234",
-        program = function()
-          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
-        cwd = "''${workspaceFolder}",
-      }
-    }
-
-    -- Setup DAP UI
-    local dapui = require('dapui')
-    dap.listeners.after.event_initialized["dapui_config"] = function()
-      dapui.open()
-    end
-    dap.listeners.before.event_terminated["dapui_config"] = function()
-      dapui.close()
-    end
-    dap.listeners.before.event_exited["dapui_config"] = function()
-      dapui.close()
-    end
-
-
-
-  -- Allow DAP UI to automatically open and close when possible
-  --  require('dap').listeners.after.event_initialized['dapui_config'] = require('dapui').open
-  --  require('dap').listeners.before.event_terminated['dapui_config'] = require('dapui').close
-  --  require('dap').listeners.before.event_exited['dapui_config'] = require('dapui').close
+    require('dap').listeners.after.event_initialized['dapui_config'] = require('dapui').open
+    require('dap').listeners.before.event_terminated['dapui_config'] = require('dapui').close
+    require('dap').listeners.before.event_exited['dapui_config'] = require('dapui').close
   '';
-
-  # Ensure required packages are available
-  extraPackages = with pkgs; [
-    # Debugger for C++
-    vscode-extensions.vadimcn.vscode-lldb
-    # Optional: GDB as an alternative
-    gdb
-  ];
-
-  extraPlugins = [(pkgs.vimPlugins.telescope-dap-nvim)];
 }

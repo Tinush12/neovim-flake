@@ -5,7 +5,7 @@
       inlayHints = true;
       servers = {
         nixd.enable = true;
-        nil-ls.enable = true;
+        #nil_ls.enable = true;
         clangd.enable = true;
         bashls.enable = true;
         pylsp = {

@@ -1,0 +1,289 @@
+{
+  pkgs,
+  unstable,
+  ...
+}: {
+  plugins = {
+    cmp-dap.enable = true;
+    dap = {
+      enable = true;
+      extensions = {
+        dap-ui = {
+          enable = true;
+          #floating.mappings = {close = ["<ESC>" "q"];};
+        };
+        dap-python.enable = true;
+        dap-virtual-text.enable = true;
+      };
+      adapters = {
+        executables = {
+          lldb = {
+            command = "${pkgs.lldb_18}/bin/lldb-vscode";
+          };
+        };
+      };
+    };
+    #dap-lldb = {
+    #  enable = true;
+    #  package = unstable.vimPlugins.nvim-dap-lldb;
+    #};
+  };
+
+  # Ensure required packages are available
+  extraPackages = with pkgs; [
+    clang
+    # Debugger for C++
+    vscode-extensions.vadimcn.vscode-lldb
+    # Optional: GDB as an alternative
+    gdb
+  ];
+
+  # Additional configuration for C++ debugging
+  #  extraConfigLua = ''
+  #      local dap = require('dap')
+  #
+  #      -- Configure GDB adapter
+  #      dap.adapters.gdb = {
+  #        type = 'executable',
+  #        command = 'gdb',
+  #        args = { '-i', 'dap' }
+  #      }
+  #
+  #      -- Debugger configuration for C++
+  #      dap.configurations.cpp = {
+  #        {
+  #          name = "Launch",
+  #          type = "gdb",
+  #          request = "launch",
+  #          program = function()
+  #            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+  #          end,
+  #          cwd = "''${workspaceFolder}",
+  #          stopOnEntry = true,
+  #          args = function()
+  #            local args_string = vim.fn.input("Arguments: ")
+  #            return vim.split(args_string, " ")
+  #          end,
+  #          env = function()
+  #            local variables = {}
+  #            for k, v in pairs(vim.fn.environ()) do
+  #              table.insert(variables, string.format("%s=%s", k, v))
+  #            end
+  #            return variables
+  #          end,
+  #        },
+  #        {
+  #          name = "Attach to gdbserver",
+  #          type = "gdb",
+  #          request = "attach",
+  #          remoteHost = "localhost",
+  #          remotePort = "1234",
+  #          program = function()
+  #            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+  #          end,
+  #          cwd = "''${workspaceFolder}",
+  #        }
+  #      }
+  #
+  #      -- Setup DAP UI
+  #      local dapui = require('dapui')
+  #      dap.listeners.after.event_initialized["dapui_config"] = function()
+  #        dapui.open()
+  #      end
+  #      dap.listeners.before.event_terminated["dapui_config"] = function()
+  #        dapui.close()
+  #      end
+  #      dap.listeners.before.event_exited["dapui_config"] = function()
+  #        dapui.close()
+  #      end
+  #
+  #
+  #
+  #    -- Allow DAP UI to automatically open and close when possible
+  #    --  require('dap').listeners.after.event_initialized['dapui_config'] = require('dapui').open
+  #    --  require('dap').listeners.before.event_terminated['dapui_config'] = require('dapui').close
+  #    --  require('dap').listeners.before.event_exited['dapui_config'] = require('dapui').close
+  #  '';
+
+  extraPlugins = [(pkgs.vimPlugins.telescope-dap-nvim)];
+
+  keymaps = [
+    {
+      mode = "n";
+      key = "<leader>dB";
+      action = "\n        <cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>\n      ";
+      options = {
+        silent = true;
+        desc = "Breakpoint Condition";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>db";
+      action = ":DapToggleBreakpoint<cr>";
+      options = {
+        silent = true;
+        desc = "Toggle Breakpoint";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dc";
+      action = ":DapContinue<cr>";
+      options = {
+        silent = true;
+        desc = "Continue";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>da";
+      action = "<cmd>lua require('dap').continue({ before = get_args })<cr>";
+      options = {
+        silent = true;
+        desc = "Run with Args";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dC";
+      action = "<cmd>lua require('dap').run_to_cursor()<cr>";
+      options = {
+        silent = true;
+        desc = "Run to cursor";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dg";
+      action = "<cmd>lua require('dap').goto_()<cr>";
+      options = {
+        silent = true;
+        desc = "Go to line (no execute)";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>di";
+      action = ":DapStepInto<cr>";
+      options = {
+        silent = true;
+        desc = "Step into";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dj";
+      action = "\n        <cmd>lua require('dap').down()<cr>\n      ";
+      options = {
+        silent = true;
+        desc = "Down";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dk";
+      action = "<cmd>lua require('dap').up()<cr>";
+      options = {
+        silent = true;
+        desc = "Up";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dl";
+      action = "<cmd>lua require('dap').run_last()<cr>";
+      options = {
+        silent = true;
+        desc = "Run Last";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>do";
+      action = ":DapStepOut<cr>";
+      options = {
+        silent = true;
+        desc = "Step Out";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dO";
+      action = ":DapStepOver<cr>";
+      options = {
+        silent = true;
+        desc = "Step Over";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dp";
+      action = "<cmd>lua require('dap').pause()<cr>";
+      options = {
+        silent = true;
+        desc = "Pause";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dr";
+      action = ":DapToggleRepl<cr>";
+      options = {
+        silent = true;
+        desc = "Toggle REPL";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ds";
+      action = "<cmd>lua require('dap').session()<cr>";
+      options = {
+        silent = true;
+        desc = "Session";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dt";
+      action = ":DapTerminate<cr>";
+      options = {
+        silent = true;
+        desc = "Terminate";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>du";
+      action = "<cmd>lua require('dapui').toggle()<cr>";
+      options = {
+        silent = true;
+        desc = "Dap UI";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dw";
+      action = "<cmd>lua require('dap.ui.widgets').hover()<cr>";
+      options = {
+        silent = true;
+        desc = "Widgets";
+      };
+    }
+    {
+      mode = ["n" "v"];
+      key = "<leader>de";
+      action = "<cmd>lua require('dapui').eval()<cr>";
+      options = {
+        silent = true;
+        desc = "Eval";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>df";
+      action = "<CMD>lua require('dap.ext.vscode').load_launchjs()<CR><CMD>Telescope dap configurations<CR>";
+      options = {desc = "Debug Configurations";};
+    }
+  ];
+}
