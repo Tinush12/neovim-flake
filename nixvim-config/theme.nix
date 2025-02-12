@@ -3,9 +3,9 @@
     onedark = {
       enable = false;
       settings = {
-        colors = { yellow = "#d9a950"; };
+        colors = {yellow = "#d9a950";};
         style = "dark";
-        transparent = true;
+        transparent = false;
       };
     };
     kanagawa = {
