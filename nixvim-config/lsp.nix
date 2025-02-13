@@ -124,6 +124,7 @@
           markdown = ["prettier"];
           nix = ["alejandra"];
           yaml = ["yamlfmt"];
+          cpp = ["clangd"];
         };
       };
     };
