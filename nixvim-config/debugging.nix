@@ -1,21 +1,40 @@
-{...}: {
-  # Shows how to use the DAP plugin to debug your code.
-  #
-  # Primarily focused on configuring the debugger for Go, but can
-  # be extended to other languages as well. That's why it's called
-  # kickstart.nixvim and not kitchen-sink.nixvim ;)
-  # https://nix-community.github.io/nixvim/plugins/dap/index.html
+{
+  lib,
+  pkgs,
+  ...
+}: {
+  extraPackages = with pkgs; [
+    coreutils
+    lldb_18
+    vscode-extensions.vadimcn.vscode-lldb
+  ];
+
   plugins.dap = {
     enable = true;
+    #adapters = {
+    #  executables = {
+    #    lldb = {
+    #      command = lib.getExe' pkgs.lldb "lldb-vscode";
+    #    };
+    #  };
+    #  servers = {
+    #    codelldb = {
+    #      port = 13000;
+    #      executable = {
+    #        command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+    #        args = [
+    #          "--port"
+    #          "13000"
+    #        ];
+    #      };
+    #    };
+    #  };
+    #};
 
     extensions = {
       # Creates a beautiful debugger UI
       dap-ui = {
         enable = true;
-
-        # Set icons to characters that are more likely to work in every terminal.
-        # Feel free to remove or use ones that you like more! :)
-        # Don't feel like these are good choices.
         icons = {
           expanded = "▾";
           collapsed = "▸";
@@ -36,11 +55,71 @@
           };
         };
       };
+    };
+  };
 
-      # Add your own debuggers here
-      dap-python.enable = true;
-      dap-go = {
-        enable = true;
+  # Add your own debuggers here
+  #plugins.dap-python.enable = true;
+  plugins.dap-lldb = {
+    enable = true;
+    settings = {
+      codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+      configurations = {
+        cpp = [
+          {
+            cwd = "$\${workspaceFolder}";
+            name = "Debug";
+            program = {
+              __raw = ''
+                function()
+                   local cwd = string.format("%s%s", vim.fn.getcwd(), sep)
+                   return vim.fn.input("Path to executable: ", cwd, "file")
+                end
+              '';
+            };
+            request = "launch";
+            stopOnEntry = false;
+            type = "lldb";
+          }
+          {
+            args = {
+              __raw = ''
+                function()
+                   local args = vim.fn.input("Enter args: ")
+                   return vim.split(args, " ", { trimempty = true })
+                end
+              '';
+            };
+            cwd = "$\${workspaceFolder}";
+            name = "Debug (+args)";
+            program = {
+              __raw = ''
+                function()
+                   local cwd = string.format("%s%s", vim.fn.getcwd(), sep)
+                   return vim.fn.input("Path to executable: ", cwd, "file")
+                end
+              '';
+            };
+            request = "launch";
+            stopOnEntry = false;
+            type = "lldb";
+          }
+          {
+            cwd = "$\${workspaceFolder}";
+            name = "Attach debugger";
+            program = {
+              __raw = ''
+                function()
+                   local cwd = string.format("%s%s", vim.fn.getcwd(), sep)
+                   return vim.fn.input("Path to executable: ", cwd, "file")
+                end
+              '';
+            };
+            request = "attach";
+            stopOnEntry = false;
+            type = "lldb";
+          }
+        ];
       };
     };
   };
