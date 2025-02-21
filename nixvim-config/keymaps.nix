@@ -1,5 +1,17 @@
 {...}: {
   keymaps = [
+    {
+      mode = "n";
+      key = "q";
+      action = "<cmd>q<CR>";
+      options.desc = "Quit Neovim";
+    }
+    {
+      mode = "n";
+      key = "<leader>w";
+      action = "<cmd>w<CR>";
+      options.desc = "Save files";
+    }
     # Telescope
     {
       mode = "n";
