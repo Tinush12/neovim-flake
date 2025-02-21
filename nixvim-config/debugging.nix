@@ -79,6 +79,18 @@
     }
     {
       mode = "n";
+      key = "<leader>ds";
+      action.__raw = ''
+        function()
+          require('dap').terminate()
+        end
+      '';
+      options = {
+        desc = "Debug: Stop";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>dn";
       action.__raw = ''
         function()

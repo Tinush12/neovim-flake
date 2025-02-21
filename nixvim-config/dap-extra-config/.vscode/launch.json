@@ -1,0 +1,14 @@
+{
+    "$schema": "https://raw.githubusercontent.com/mfussenegger/dapconfig-schema/master/dapconfig-schema.json",
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug with codelldb",
+            "program": "${workspaceFolder}/builder/main",
+            "args":[],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
