@@ -8,9 +8,9 @@
     }
     {
       mode = "n";
-      key = "<leader>w";
+      key = "w";
       action = "<cmd>w<CR>";
-      options.desc = "Save files";
+      options.desc = "Save Files";
     }
     # Telescope
     {
