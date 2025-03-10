@@ -95,10 +95,15 @@
     cmp-path.enable = true;
     cmp-treesitter.enable = true;
 
-    lsp-format.enable = true;
+    lsp-format = {
+      enable = true;
+      lspServersToEnable = [
+        "nixd"
+      ];
+    };
     none-ls = {
       enable = true;
-      enableLspFormat = true;
+      enableLspFormat = false;
       sources.formatting = {
         alejandra.enable = true;
         stylua.enable = true;
