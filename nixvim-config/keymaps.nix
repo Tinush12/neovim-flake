@@ -1,5 +1,8 @@
 {...}: {
   keymaps = [
+    # ---------------------
+    # Save & Exit Neovim
+    # ---------------------
     {
       mode = "n";
       key = "q";
@@ -12,27 +15,27 @@
       action = "<cmd>w<CR>";
       options.desc = "Save Files";
     }
+    # ---------------------
     # Telescope
+    # ---------------------
     {
       mode = "n";
       key = "<leader>f";
       action = "<cmd>Telescope find_files<CR>";
       options.desc = "Find files";
     }
+    # ---------------------
     # Hop
-    {
-      mode = "n";
-      key = "gw";
-      action = "<cmd>HopWord<CR>";
-      options.desc = "Go to an word in the current buffer";
-    }
+    # ---------------------
     {
       mode = "n";
       key = "f";
       action = "<cmd>HopWord<CR>";
       options.desc = "Go to an word in the current buffer";
     }
-    # Buffer
+    # ---------------------
+    # Buffer Navigation
+    # ---------------------
     {
       mode = "n";
       key = "gn";
@@ -51,14 +54,54 @@
       action = "<cmd>bp<CR>";
       options.desc = "Go to prev buffer";
     }
-    ## / Find Deselection
-    #{
-    #  mode = "n";
-    #  key = "<ESC><ESC>";
-    #  action = ":nohlsearch<CR>";
-    #  options.desc = "Unselect Search Results";
-    #}
+    # ---------------------
+    # Window Navigation
+    # ---------------------
+    {
+      mode = "n";
+      key = "n";
+      action = "<cmd>enew<CR>";
+      options.desc = "Open a new empty Window";
+    }
+    {
+      mode = "n";
+      key = "<leader>ws";
+      action = "<cmd>split<CR>";
+      options.desc = "Split current Window horizontal";
+    }
+    {
+      mode = "n";
+      key = "<leader>wvs";
+      action = "<cmd>vsplit<CR>";
+      options.desc = "Split current Window vertical";
+    }
+    {
+      mode = "n";
+      key = "<leader>wh";
+      action = "<cmd>wincmd h<CR>";
+      options.desc = "Move Cursor to the left window";
+    }
+    {
+      mode = "n";
+      key = "<leader>wj";
+      action = "<cmd>wincmd j<CR>";
+      options.desc = "Move Cursor to the lower window";
+    }
+    {
+      mode = "n";
+      key = "<leader>wk";
+      action = "<cmd>wincmd k<CR>";
+      options.desc = "Move Cursor to the upper window";
+    }
+    {
+      mode = "n";
+      key = "<leader>wl";
+      action = "<cmd>wincmd l<CR>";
+      options.desc = "Move Cursor to the right window";
+    }
+    # ---------------------
     # Terminal Buffer
+    # ---------------------
     {
       mode = "n";
       key = "<leader>t";
