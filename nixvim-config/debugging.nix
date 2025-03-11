@@ -91,7 +91,7 @@
     }
     {
       mode = "n";
-      key = "<leader>dn";
+      key = "<leader>dN";
       action.__raw = ''
         function()
           require('dap').step_into()
@@ -103,7 +103,7 @@
     }
     {
       mode = "n";
-      key = "<leader>dN";
+      key = "<leader>n";
       action.__raw = ''
         function()
           require('dap').step_over()
