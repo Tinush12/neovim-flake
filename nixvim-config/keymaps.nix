@@ -59,7 +59,7 @@
     # ---------------------
     {
       mode = "n";
-      key = "n";
+      key = " <leader>wn";
       action = "<cmd>enew<CR>";
       options.desc = "Open a new empty Window";
     }
