@@ -65,6 +65,7 @@
 
   # https://nix-community.github.io/nixvim/keymaps/index.html
   keymaps = [
+    # Start and Stop debugging
     {
       mode = "n";
       key = "<leader>dc";
@@ -89,18 +90,7 @@
         desc = "Debug: Stop";
       };
     }
-    {
-      mode = "n";
-      key = "<leader>dN";
-      action.__raw = ''
-        function()
-          require('dap').step_into()
-        end
-      '';
-      options = {
-        desc = "Debug: Step Into";
-      };
-    }
+    # Step through code
     {
       mode = "n";
       key = "<leader>n";
@@ -115,6 +105,18 @@
     }
     {
       mode = "n";
+      key = "<leader>N";
+      action.__raw = ''
+        function()
+          require('dap').step_into()
+        end
+      '';
+      options = {
+        desc = "Debug: Step Into";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>do";
       action.__raw = ''
         function()
@@ -125,6 +127,7 @@
         desc = "Debug: Step Out";
       };
     }
+    # Setting Breakpoints
     {
       mode = "n";
       key = "<leader>b";
@@ -149,6 +152,7 @@
         desc = "Debug: Set Breakpoint";
       };
     }
+    # Toggle dap-ui
     {
       mode = "n";
       key = "<leader>du";
