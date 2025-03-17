@@ -5,7 +5,10 @@
     treesitter = {
       enable = true;
       folding = false;
-      settings.indent.enable = true;
+      settings = {
+        indent.enable = true;
+        highlight.enable = true;
+      };
     };
     bufferline = {
       # Tab line a the Top

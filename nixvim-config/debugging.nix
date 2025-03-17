@@ -63,6 +63,10 @@
     };
   };
 
+  #plugins.dap-virutal-text = {
+
+  #};
+
   # https://nix-community.github.io/nixvim/keymaps/index.html
   keymaps = [
     # Start and Stop debugging
