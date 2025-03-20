@@ -107,7 +107,7 @@
       sources.formatting = {
         alejandra.enable = true;
         stylua.enable = true;
-        yamlfmt.enable = true;
+        yamlfmt.enable = false;
       };
       sources.diagnostics = {
         yamllint.enable = true;
@@ -124,13 +124,13 @@
         notify_on_error = true;
 
         formatters_by_ft = {
-          css = ["prettier"];
-          html = ["prettier"];
-          json = ["prettier"];
+          #css = ["prettier"];
+          #html = ["prettier"];
+          #json = ["prettier"];
           lua = ["stylua"];
           markdown = ["prettier"];
           nix = ["alejandra"];
-          yaml = ["yamlfmt"];
+          #yaml = ["yamlfmt"];
           cpp = ["clangd"];
         };
       };
