@@ -20,7 +20,7 @@
       signcolumn = "yes";
       smartcase = true;
       smartindent = true;
-      tabstop = 2;
+      tabstop = 4;
 
       ignorecase = true;
       incsearch = true;
