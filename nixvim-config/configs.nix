@@ -14,6 +14,7 @@
       cursorline = false;
       list = true;
       expandtab = true;
+      scrolloff = 999;
       shiftround = true;
       shiftwidth = 2;
       # showmode = false;
