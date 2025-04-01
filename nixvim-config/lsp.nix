@@ -8,6 +8,8 @@
         #nil_ls.enable = true;
         clangd.enable = true;
         bashls.enable = true;
+        marksman.enable = true;
+        dockerls.enable = true;
         #pylsp = {
         #  enable = true;
         #  settings.plugins = {
