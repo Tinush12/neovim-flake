@@ -71,5 +71,9 @@
     #luasnip.enable = true;
     #render-markdown.enable = true;
     #auto-save.enable = true;
+    neoscroll = {
+      enable = true;
+      autoLoad = true;
+    };
   };
 }
