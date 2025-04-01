@@ -18,7 +18,10 @@
     lualine = {
       # Status line at the Bottom
       enable = true;
-      settings.options.globalstatus = true;
+      settings.options = {
+        globalstatus = true;
+        theme = "nord";
+      };
     };
 
     mini = {
