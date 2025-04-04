@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   plugins = {
     lsp = {
       enable = true;
@@ -7,6 +7,7 @@
         nixd.enable = true;
         #nil_ls.enable = true;
         clangd.enable = true;
+        cmake.enable = true;
         bashls.enable = true;
         marksman.enable = true;
         dockerls.enable = true;
@@ -133,7 +134,7 @@
           markdown = ["prettier"];
           nix = ["alejandra"];
           #yaml = ["yamlfmt"];
-          cpp = ["clangd"];
+          #cpp = ["clangd"];
         };
       };
     };
