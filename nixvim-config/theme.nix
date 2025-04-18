@@ -5,7 +5,7 @@
       settings = {
         colors = {yellow = "#d9a950";};
         style = "dark";
-        transparent = false;
+        transparent = true;
       };
     };
     kanagawa = {

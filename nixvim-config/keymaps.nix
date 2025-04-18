@@ -16,6 +16,15 @@
       options.desc = "Save Files";
     }
     # ---------------------
+    # Neovim Remaps
+    # ---------------------
+    {
+      mode = "n";
+      key = "U";
+      action = "<C-r><CR>";
+      options.desc = "Redo last action";
+    }
+    # ---------------------
     # Telescope
     # ---------------------
     {
