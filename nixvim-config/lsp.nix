@@ -11,22 +11,20 @@
         bashls.enable = true;
         marksman.enable = true;
         dockerls.enable = true;
-        #pylsp = {
-        #  enable = true;
-        #  settings.plugins = {
-        #    black.enabled = true;
-        #    flake8.enabled = true;
-        #    isort.enabled = true;
-        #    jedi.enabled = true;
-        #    mccabe.enabled = true;
-        #    pycodestyle.enabled = true;
-        #    pydocstyle.enabled = true;
-        #    pyflakes.enabled = true;
-        #    pylint.enabled = true;
-        #    rope.enabled = true;
-        #    yapf.enabled = true;
-        #  };
-        #};
+        pylsp = {
+          enable = true;
+          settings.plugins = {
+            black.enabled = true; # formatter
+            #flake8.enabled = true; # formatter (combines pycodestyle, pyflakes)
+            #yapf.enabled = true; # formatter
+            isort.enabled = true; # sort imports alphabetically
+            jedi.enabled = true; # analysis tool (autocompletion, goto, doc, refactor, search)
+            #mccabe.enabled = true; # code complexity measurement
+            pydocstyle.enabled = true; # compliance check for docstring
+            pylint.enabled = true;
+            #rope.enabled = true; # refactor
+          };
+        };
       };
 
       keymaps.lspBuf = {
