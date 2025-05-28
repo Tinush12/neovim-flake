@@ -12,7 +12,7 @@
         marksman.enable = true;
         dockerls.enable = true;
         pylsp = {
-          enable = true;
+          enable = false;
           settings.plugins = {
             black.enabled = true; # formatter
             #flake8.enabled = true; # formatter (combines pycodestyle, pyflakes)
