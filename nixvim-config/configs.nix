@@ -16,12 +16,12 @@
       expandtab = true; # conv. tabs to spaces
       scrolloff = 999; # Keeps the cursor centered vertically in the window at all times
       shiftround = true;
-      shiftwidth = 4;
+      shiftwidth = 2;
       # showmode = false;
       signcolumn = "yes";
       smartcase = true; # Makes searches case-sensitive only if they contain uppercase characters.
       smartindent = true; # Enables "smart" auto-indenting that adjusts based on the syntax/structure of the code.
-      tabstop = 4; # Sets how many spaces a tab character is equivalent to when displayed
+      tabstop = 2; # Sets how many spaces a tab character is equivalent to when displayed
 
       ignorecase = true; # Makes searches case-insensitive by default (works with smartcase)
       incsearch = true; # Shows search matches as you type the search pattern.
