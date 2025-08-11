@@ -117,5 +117,17 @@
       action = ":below 15 split | terminal<CR>";
       options.desc = "create a termnal below";
     }
+    # ---------------------
+    # Diagnostics
+    # ---------------------
+    {
+      mode = "n";
+      key = "<leader>k";
+      action = "<CMD>lua vim.diagnostic.open_float()<CR>";
+      options = {
+        desc = "opens diagnostics windows on cursor pos";
+        silent = true;
+      };
+    }
   ];
 }
