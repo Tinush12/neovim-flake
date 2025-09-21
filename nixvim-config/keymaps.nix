@@ -129,5 +129,14 @@
         silent = true;
       };
     }
+    {
+      mode = "n";
+      key = "<leader>ac";
+      action = "<CMD>lua vim.lsp.buf.code_action()<CR>";
+      options = {
+        desc = "accepts the suggestion from lsp";
+        silent = true;
+      };
+    }
   ];
 }
