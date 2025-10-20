@@ -118,7 +118,7 @@
       options.desc = "create a termnal below";
     }
     # ---------------------
-    # Diagnostics
+    # lsp
     # ---------------------
     {
       mode = "n";
@@ -135,6 +135,15 @@
       action = "<CMD>lua vim.lsp.buf.code_action()<CR>";
       options = {
         desc = "accepts the suggestion from lsp";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>r";
+      action = "<CMD>lua vim.lsp.buf.references()<CR>";
+      options = {
+        desc = "lsp show references";
         silent = true;
       };
     }
