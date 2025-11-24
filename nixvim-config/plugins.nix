@@ -71,16 +71,16 @@
         }
       ];
     };
-    #harpoon = {
-    #  enable = true;
-    #  saveOnToggle = true;
-    #  saveOnChange = true;
-    #  enterOnSendcmd = false;
-    #  markBranch = true;
-    #};
+    harpoon = {
+      enable = true;
+      saveOnToggle = true;
+      saveOnChange = true;
+      enterOnSendcmd = false;
+      markBranch = true;
+    };
 
     #luasnip.enable = true;
-    #render-markdown.enable = true;
+    render-markdown.enable = true;
     #auto-save.enable = true;
     neoscroll = {
       enable = true;

@@ -11,7 +11,7 @@
       autowrite = true; # Automatically saves the current buffer when switching between buffers or executing certain commands
       confirm = true; # when you try to quit without saving changes (or perform other actions that would discard changes)
       clipboard = "unnamedplus";
-      cursorline = false;
+      cursorline = true;
       list = true; # Enables the display of invisible characters like tabs and line endings
       expandtab = true; # conv. tabs to spaces
       scrolloff = 999; # Keeps the cursor centered vertically in the window at all times
