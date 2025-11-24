@@ -144,18 +144,18 @@
         desc = "Debug: Toggle Breakpoint";
       };
     }
-    {
-      mode = "n";
-      key = "<leader>B";
-      action.__raw = ''
-        function()
-          require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-        end
-      '';
-      options = {
-        desc = "Debug: Set Breakpoint";
-      };
-    }
+    #{
+    #  mode = "n";
+    #  key = "<leader>B";
+    #  action.__raw = ''
+    #    function()
+    #      require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+    #    end
+    #  '';
+    #  options = {
+    #    desc = "Debug: Set Breakpoint";
+    #  };
+    #}
     # Toggle dap-ui
     {
       mode = "n";

@@ -1,10 +1,13 @@
 # NixVim - NeoVim Configuration
 
 ## Basic NeoVim Setup
+
 This is a basic neovim setup to be included into a NixOS Configuration or to run standalone.
 
 ## How to include to NixOS
+
 Add the input to a flake:
+
 ```nix
 {
  inputs = {
@@ -14,6 +17,7 @@ Add the input to a flake:
 ```
 
 Then add the included input to use with:
+
 ```
 { inputs ... }:
 

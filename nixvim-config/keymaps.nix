@@ -33,6 +33,18 @@
       action = "<cmd>Telescope find_files<CR>";
       options.desc = "Find files";
     }
+    {
+      mode = "n";
+      key = "<leader>B";
+      action = "<cmd>Telescope buffers<CR>";
+      options.desc = "Find files";
+    }
+    {
+      mode = "n";
+      key = "<leader>g";
+      action = "<cmd>Telescope live_grep<CR>";
+      options.desc = "Telescope grep ";
+    }
     # ---------------------
     # Hop
     # ---------------------

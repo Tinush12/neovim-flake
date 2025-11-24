@@ -73,15 +73,15 @@
     };
     harpoon = {
       enable = true;
-      saveOnToggle = true;
-      saveOnChange = true;
-      enterOnSendcmd = false;
-      markBranch = true;
+      #enableTelescope = true;
+      autoLoad = true;
+      #settings = {
+      #  save_on_toggle = true;
+      #  sync_on_ui_close = false;
+      #};
     };
 
     #luasnip.enable = true;
-    render-markdown.enable = true;
-    #auto-save.enable = true;
     neoscroll = {
       enable = true;
       autoLoad = true;
