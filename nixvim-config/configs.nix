@@ -34,5 +34,8 @@
 
       wrap = true;
     };
+    extraConfigLua = ''
+      vim.opt.scroll = 20
+    '';
   };
 }
