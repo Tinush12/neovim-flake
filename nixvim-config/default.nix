@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./configs.nix
     ./theme.nix

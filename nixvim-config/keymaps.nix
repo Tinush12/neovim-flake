@@ -5,9 +5,15 @@
     # ---------------------
     {
       mode = "n";
-      key = "q";
+      key = "<leader>q";
       action = "<cmd>q<CR>";
       options.desc = "Quit Neovim";
+    }
+    {
+      mode = "n";
+      key = "q";
+      action = "<cmd>bd<CR>";
+      options.desc = "Delete Buffer";
     }
     {
       mode = "n";
