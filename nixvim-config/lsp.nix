@@ -100,7 +100,7 @@
       enable = true;
       lspServersToEnable = [
         "alejandra"
-        #"clangd"
+        "clangd"
         "stylua"
         "prettier"
       ];
@@ -108,17 +108,17 @@
 
     none-ls = {
       enable = true;
-      autoLoad=true;
+      autoLoad = true;
       enableLspFormat = true;
       sources.formatting = {
         alejandra.enable = true;
         stylua.enable = true;
-        yamlfmt.enable = true;
-        prettier.enable =true;
+        #yamlfmt.enable = true;
+        prettier.enable = true;
       };
-      sources.diagnostics = {
-        yamllint.enable = true;
-      };
+      #sources.diagnostics = {
+      #  yamllint.enable = true;
+      #};
     };
 
     #conform-nvim = {
