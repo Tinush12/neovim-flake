@@ -49,7 +49,13 @@
       mode = "n";
       key = "<leader>g";
       action = "<cmd>Telescope live_grep<CR>";
-      options.desc = "Telescope grep ";
+      options.desc = "Telescope ripgrep ";
+    }
+    {
+      mode = "n";
+      key = "/";
+      action = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
+      options.desc = "Search in current buffer";
     }
     # ---------------------
     # Hop
