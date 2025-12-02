@@ -172,4 +172,35 @@
       };
     }
   ];
+
+  # Add this extraConfigLua to create a custom action
+  extraConfigLua = ''
+    local actions = require('telescope.actions')
+    local action_state = require('telescope.actions.state')
+
+    -- Custom action that sets search register and highlights
+    local function set_search_and_select(prompt_bufnr)
+      local picker = action_state.get_current_picker(prompt_bufnr)
+      local prompt = picker:_get_prompt()
+
+      actions.select_default(prompt_bufnr)
+
+      -- Set search register and enable highlighting
+      if prompt ~= "" then
+        vim.fn.setreg('/', prompt)
+        vim.cmd('set hlsearch')
+      end
+    end
+
+    -- Override the default mapping for current_buffer_fuzzy_find
+    require('telescope').setup({
+      defaults = {
+        mappings = {
+          i = {
+            ["<CR>"] = set_search_and_select,
+          },
+        },
+      },
+    })
+  '';
 }
