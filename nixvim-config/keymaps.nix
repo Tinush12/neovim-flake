@@ -87,6 +87,18 @@
       action = "<cmd>bp<CR>";
       options.desc = "Go to prev buffer";
     }
+    {
+      mode = "n";
+      key = "go";
+      action = "<C-o>";
+      options.desc = "Go to prev pos";
+    }
+    {
+      mode = "n";
+      key = "gi";
+      action = "<C-i>";
+      options.desc = "Go to next pos";
+    }
     # ---------------------
     # Window Navigation
     # ---------------------
@@ -162,17 +174,15 @@
         silent = true;
       };
     }
-    {
-      mode = "n";
-      key = "<leader>r";
-      action = "<CMD>lua vim.lsp.buf.references()<CR>";
-      options = {
-        desc = "lsp show references";
-        silent = true;
-      };
-    }
   ];
 
+  plugins.lsp.keymaps.lspBuf = {
+    "gd" = "definition";
+    "gD" = "references";
+    "gt" = "type_definition";
+    "gI" = "implementation";
+    "K" = "hover";
+  };
   # Add this extraConfigLua to create a custom action
   extraConfigLua = ''
     local actions = require('telescope.actions')
