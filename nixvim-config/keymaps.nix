@@ -110,37 +110,37 @@
     }
     {
       mode = "n";
-      key = "<leader>ws";
+      key = "<leader>wh";
       action = "<cmd>split<CR>";
       options.desc = "Split current Window horizontal";
     }
     {
       mode = "n";
-      key = "<leader>wvs";
+      key = "<leader>wv";
       action = "<cmd>vsplit<CR>";
       options.desc = "Split current Window vertical";
     }
     {
       mode = "n";
-      key = "<leader>wh";
+      key = "gH";
       action = "<cmd>wincmd h<CR>";
       options.desc = "Move Cursor to the left window";
     }
     {
       mode = "n";
-      key = "<leader>wj";
+      key = "gJ";
       action = "<cmd>wincmd j<CR>";
       options.desc = "Move Cursor to the lower window";
     }
     {
       mode = "n";
-      key = "<leader>wk";
+      key = "gK";
       action = "<cmd>wincmd k<CR>";
       options.desc = "Move Cursor to the upper window";
     }
     {
       mode = "n";
-      key = "<leader>wl";
+      key = "gL";
       action = "<cmd>wincmd l<CR>";
       options.desc = "Move Cursor to the right window";
     }
