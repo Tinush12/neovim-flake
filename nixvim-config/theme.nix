@@ -51,7 +51,7 @@
         };
         commentStyle.italic = true;
         theme = "wave"; # wave lotus
-        transparent = false;
+        transparent = true;
       };
     };
   };

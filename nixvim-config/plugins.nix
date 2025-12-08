@@ -10,6 +10,10 @@
         highlight.enable = true;
       };
     };
+
+    transparent.enable = true;
+    transparent.autoLoad = true;
+
     bufferline = {
       # Tab line a the Top
       enable = true;
@@ -34,6 +38,59 @@
               text_align = "left";
             }
           ];
+          highlights = {
+            fill = {
+              bg = "NONE";
+            };
+            background = {
+              fg = "#6c7086";
+              bg = "NONE";
+            };
+            buffer_visible = {
+              fg = "#cdd6f4";
+              bg = "NONE";
+            };
+            buffer_selected = {
+              fg = "#cdd6f4";
+              bg = "NONE";
+              bold = true;
+              italic = false;
+              underline = true; # Add underline to selected buffer
+              sp = "#89b4fa"; # Underline color (special color)
+            };
+            indicator_selected = {
+              fg = "#89b4fa";
+              bg = "NONE";
+              underline = true;
+              sp = "#89b4fa";
+            };
+            modified = {
+              fg = "#f9e2af";
+              bg = "NONE";
+            };
+            modified_visible = {
+              fg = "#f9e2af";
+              bg = "NONE";
+            };
+            modified_selected = {
+              fg = "#f9e2af";
+              bg = "NONE";
+              underline = true;
+              sp = "#89b4fa";
+            };
+            separator = {
+              fg = "#45475a";
+              bg = "NONE";
+            };
+            separator_selected = {
+              fg = "#45475a";
+              bg = "NONE";
+            };
+            separator_visible = {
+              fg = "#45475a";
+              bg = "NONE";
+            };
+          };
         };
       };
     };
