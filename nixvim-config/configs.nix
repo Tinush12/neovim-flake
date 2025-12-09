@@ -34,8 +34,23 @@
 
       wrap = true;
     };
+
     extraConfigLua = ''
       vim.opt.scroll = 20
+
+      -- Set split separators
+      vim.opt.fillchars = {
+        horiz = '─',
+        horizup = '┴',
+        horizdown = '┬',
+        vert = '│',
+        vertleft = '┤',
+        vertright = '├',
+        verthoriz = '┼',
+      }
+
+      -- Set separator color
+      vim.api.nvim_set_hl(0, 'WinSeparator', { fg = 'DimGray', bg = 'NONE' })
     '';
   };
 }
