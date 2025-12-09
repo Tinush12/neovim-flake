@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   plugins = {
     hop.enable = true;
 
@@ -230,16 +230,66 @@
         }
       ];
     };
-    harpoon = {
-      enable = true;
-      #enableTelescope = true;
+    #    harpoon = {
+    #      enable = false;
+    #      package = pkgs.vimPlugins.harpoon2;
+    #      enableTelescope = true;
+    #      autoLoad = true;
+    #      settings = {
+    #        #save_on_toggle = true;
+    #        #sync_on_ui_close = false;
+    #      };
+    #    };
+    avante = {
+      enable = false;
       autoLoad = true;
-      #settings = {
-      #  save_on_toggle = true;
-      #  sync_on_ui_close = false;
-      #};
+      settings = {
+        diff = {
+          autojump = true;
+          debug = false;
+          list_opener = "copen";
+        };
+        highlights = {
+          diff = {
+            current = "DiffText";
+            incoming = "DiffAdd";
+          };
+        };
+        hints = {
+          enabled = true;
+        };
+        #mappings = {
+        #  diff = {
+        #    both = "cb";
+        #    next = "]x";
+        #    none = "c0";
+        #    ours = "co";
+        #    prev = "[x";
+        #    theirs = "ct";
+        #  };
+        #};
+        auto_suggestions_provider = "ollama";
+        provider = "ollama";
+        providers = {
+          "ollama" = {
+            endpoint = "http://localhost:8000";
+            extra_request_body = {
+              max_tokens = 4096;
+              temperature = 0;
+            };
+            model = "model-name";
+          };
+        };
+        windows = {
+          sidebar_header = {
+            align = "center";
+            rounded = true;
+          };
+          width = 30;
+          wrap = true;
+        };
+      };
     };
-
     #luasnip.enable = true;
     neoscroll = {
       enable = true;
