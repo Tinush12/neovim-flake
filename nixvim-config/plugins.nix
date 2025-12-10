@@ -241,7 +241,7 @@
     #      };
     #    };
     avante = {
-      enable = false;
+      enable = true;
       autoLoad = true;
       settings = {
         diff = {
@@ -258,26 +258,16 @@
         hints = {
           enabled = true;
         };
-        #mappings = {
-        #  diff = {
-        #    both = "cb";
-        #    next = "]x";
-        #    none = "c0";
-        #    ours = "co";
-        #    prev = "[x";
-        #    theirs = "ct";
-        #  };
-        #};
         auto_suggestions_provider = "ollama";
         provider = "ollama";
         providers = {
           "ollama" = {
-            endpoint = "http://localhost:8000";
+            endpoint = "http://localhost:11434";
             extra_request_body = {
               max_tokens = 4096;
               temperature = 0;
             };
-            model = "model-name";
+            model = "codegemma:2b";
           };
         };
         windows = {
