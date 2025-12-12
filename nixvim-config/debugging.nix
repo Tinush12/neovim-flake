@@ -62,10 +62,7 @@
       configurations = {};
     };
   };
-
-  #plugins.dap-virutal-text = {
-
-  #};
+  plugins.dap-virtual-text.enable = true;
 
   # https://nix-community.github.io/nixvim/keymaps/index.html
   keymaps = [
