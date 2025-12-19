@@ -1,33 +1,59 @@
 {pkgs, ...}: {
   extraPackages = with pkgs; [
     coreutils
-    lldb_18
+    lldb
     vscode-extensions.vadimcn.vscode-lldb
   ];
 
   plugins.dap = {
     enable = true;
-    #adapters = {
-    #  executables = {
-    #    lldb = {
-    #      command = lib.getExe' pkgs.lldb "lldb-vscode";
-    #    };
-    #  };
-    #  servers = {
-    #    codelldb = {
-    #      port = 13000;
-    #      executable = {
-    #        command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-    #        args = [
-    #          "--port"
-    #          "13000"
-    #        ];
-    #      };
-    #    };
-    #  };
-    #};
-
-    extensions = {
+    adapters = {
+      executables = {
+        gdb = {
+          command = "${pkgs.gdb}/bin/gdb";
+          args = ["-i" "dap"];
+        };
+      };
+      servers = {
+        codelldb = {
+          host = "127.0.0.1";
+          port = 13000;
+          executable = {
+            #command = lib.getExe' pkgs.lldb "lldb";
+            command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+            args = [
+              "--port"
+              "13000"
+            ];
+          };
+        };
+      };
+    };
+    configurations = {
+      cpp = [
+        {
+          name = "GDB";
+          type = "gdb";
+          request = "launch";
+          program.__raw = ''
+            function()
+              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            end
+          '';
+          cwd = "\${workspaceFolder}";
+        }
+        {
+          name = "codelldb";
+          type = "codelldb";
+          request = "launch";
+          program.__raw = ''
+            function()
+              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            end
+          '';
+          cwd = "\${workspaceFolder}";
+        }
+      ];
     };
   };
 
@@ -54,15 +80,17 @@
       };
     };
   };
-  #plugins.dap-python.enable = true;
-  plugins.dap-lldb = {
-    enable = true;
-    settings = {
-      codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-      configurations = {};
-    };
-  };
+
   plugins.dap-virtual-text.enable = true;
+
+  # Backup: Working DAP
+  #plugins.dap-lldb = {
+  #  enable = true;
+  #  settings = {
+  #    codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+  #    configurations = {};
+  #  };
+  #};
 
   # https://nix-community.github.io/nixvim/keymaps/index.html
   keymaps = [

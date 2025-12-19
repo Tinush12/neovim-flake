@@ -241,7 +241,7 @@
     #      };
     #    };
     avante = {
-      enable = false;
+      enable = true;
       autoLoad = true;
       settings = {
         diff = {
@@ -267,7 +267,8 @@
               max_tokens = 4096;
               temperature = 0;
             };
-            model = "gpt-oss:20b";
+            #model = "gpt-oss:20b";
+            model = "qwen3:14b-160k";
           };
         };
         windows = {
