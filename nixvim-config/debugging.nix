@@ -73,6 +73,11 @@
           cwd = "\${workspaceFolder}";
           MIMode = "gdb";
           miDebuggerPath = "${pkgs.gdb}/bin/gdb";
+          externalConsole = false;
+          stopAtEntry = true; # Add this
+          logging = {
+            engineLogging = true; # See what's happening
+          };
         }
       ];
     };
