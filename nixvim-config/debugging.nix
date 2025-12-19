@@ -14,6 +14,11 @@
           args = ["-i" "dap"];
         };
       };
+      executables = {
+        cppdbg = {
+          command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
+        };
+      };
       servers = {
         codelldb = {
           host = "127.0.0.1";
@@ -52,6 +57,19 @@
             end
           '';
           cwd = "\${workspaceFolder}";
+        }
+        {
+          name = "cppdbg";
+          type = "cppdbg";
+          request = "launch";
+          program.__raw = ''
+            function()
+              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            end
+          '';
+          cwd = "\${workspaceFolder}";
+          MIMode = "gdb";
+          miDebuggerPath = "${pkgs.gdb}/bin/gdb";
         }
       ];
     };
