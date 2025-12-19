@@ -193,7 +193,10 @@
         };
       };
     };
+
     web-devicons.enable = true;
+
+    gitgutter.enable = true;
 
     which-key.enable = true; # Info for Keybinds
     nvim-autopairs.enable = true;
@@ -241,7 +244,7 @@
     #      };
     #    };
     avante = {
-      enable = true;
+      enable = false;
       autoLoad = true;
       settings = {
         diff = {

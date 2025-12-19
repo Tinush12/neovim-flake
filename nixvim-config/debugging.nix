@@ -15,11 +15,11 @@
           args = ["-i" "dap"];
         };
       };
-      executables = {
-        cppdbg = {
-          command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
-        };
-      };
+      #executables = {
+      #  cppdbg = {
+      #    command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
+      #  };
+      #};
       servers = {
         codelldb = {
           host = "127.0.0.1";
@@ -61,24 +61,24 @@
           '';
           cwd = "\${workspaceFolder}";
         }
-        {
-          name = "cppdbg";
-          type = "cppdbg";
-          request = "launch";
-          program.__raw = ''
-            function()
-              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-            end
-          '';
-          cwd = "\${workspaceFolder}";
-          MIMode = "gdb";
-          miDebuggerPath = "${pkgs.gdb}/bin/gdb";
-          externalConsole = false;
-          stopAtEntry = true; # Add this
-          logging = {
-            engineLogging = true; # See what's happening
-          };
-        }
+        #{
+        #  name = "cppdbg";
+        #  type = "cppdbg";
+        #  request = "launch";
+        #  program.__raw = ''
+        #    function()
+        #      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        #    end
+        #  '';
+        #  cwd = "\${workspaceFolder}";
+        #  MIMode = "gdb";
+        #  miDebuggerPath = "${pkgs.gdb}/bin/gdb";
+        #  externalConsole = false;
+        #  stopAtEntry = true; # Add this
+        #  logging = {
+        #    engineLogging = true; # See what's happening
+        #  };
+        #}
       ];
     };
   };
@@ -104,44 +104,6 @@
           disconnect = "⏏";
         };
       };
-      layouts = [
-        {
-          elements = [
-            {
-              id = "scopes";
-              size = 0.25;
-            }
-            {
-              id = "breakpoints";
-              size = 0.25;
-            }
-            {
-              id = "stacks";
-              size = 0.25;
-            }
-            {
-              id = "watches";
-              size = 0.25;
-            }
-          ];
-          position = "left";
-          size = 40;
-        }
-        {
-          elements = [
-            {
-              id = "repl";
-              size = 0.5;
-            }
-            {
-              id = "console";
-              size = 0.5;
-            }
-          ];
-          position = "bottom";
-          size = 10;
-        }
-      ];
     };
   };
 
