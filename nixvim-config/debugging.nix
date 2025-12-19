@@ -47,8 +47,8 @@
             end
           '';
           cwd = "\${workspaceFolder}";
-          #console = "internalConsole";
-          console = "externalConsole";
+          stopAtEntry = true;
+          args = [];
         }
         {
           name = "codelldb";
