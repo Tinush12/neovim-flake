@@ -266,6 +266,15 @@
     }
     {
       mode = "n";
+      key = "ge";
+      action = "<CMD>vim.diagnostic.goto_next()<CR>";
+      options = {
+        desc = "Go to next error";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>ac";
       action = "<CMD>lua vim.lsp.buf.code_action()<CR>";
       options = {
