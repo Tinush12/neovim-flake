@@ -9,22 +9,6 @@
   plugins.dap = {
     enable = true;
     adapters = {
-      executables = {
-        gdb = {
-          command = "${pkgs.gdb}/bin/gdb";
-          args = ["-i" "dap"];
-        };
-      };
-      executables = {
-        cppdbg = {
-          command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
-        };
-      };
-      executables = {
-        lldb = {
-          command = "${pkgs.lldb}/bin/lldb-dap"; # oder lldb-vscode bei älteren Versionen
-        };
-      };
       servers = {
         codelldb = {
           host = "127.0.0.1";
@@ -39,37 +23,29 @@
           };
         };
       };
+      # Uncommmend to use other debugger
+
+      #executables = {
+      #  gdb = {
+      #    command = "${pkgs.gdb}/bin/gdb";
+      #    args = ["-i" "dap"];
+      #  };
+      #};
+      #executables = {
+      #  cppdbg = {
+      #    command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
+      #  };
+      #};
+      #executables = {
+      #  lldb = {
+      #    command = "${pkgs.lldb}/bin/lldb-dap"; # oder lldb-vscode bei älteren Versionen
+      #  };
+      #};
     };
     configurations = {
       cpp = [
         {
-          name = "GDB";
-          type = "gdb";
-          request = "launch";
-          program.__raw = ''
-            function()
-              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-            end
-          '';
-          cwd = "\${workspaceFolder}";
-          stopAtEntry = true;
-          args = [];
-        }
-        {
-          name = "LLDB Native";
-          type = "lldb";
-          request = "launch";
-          program.__raw = ''
-            function()
-              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-            end
-          '';
-          cwd = "\${workspaceFolder}";
-          stopOnEntry = false;
-          args = [];
-        }
-        {
-          name = "codelldb";
+          name = "vscode-codelldb";
           type = "codelldb";
           request = "launch";
           program.__raw = ''
@@ -79,9 +55,11 @@
           '';
           cwd = "\${workspaceFolder}";
         }
+        # Uncommmend to use other debugger
+
         #{
-        #  name = "cppdbg";
-        #  type = "cppdbg";
+        #  name = "GDB";
+        #  type = "gdb";
         #  request = "launch";
         #  program.__raw = ''
         #    function()
@@ -89,13 +67,21 @@
         #    end
         #  '';
         #  cwd = "\${workspaceFolder}";
-        #  MIMode = "gdb";
-        #  miDebuggerPath = "${pkgs.gdb}/bin/gdb";
-        #  externalConsole = false;
-        #  stopAtEntry = true; # Add this
-        #  logging = {
-        #    engineLogging = true; # See what's happening
-        #  };
+        #  stopAtEntry = true;
+        #  args = [];
+        #}
+        #{
+        #  name = "LLDB Native";
+        #  type = "lldb";
+        #  request = "launch";
+        #  program.__raw = ''
+        #    function()
+        #      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        #    end
+        #  '';
+        #  cwd = "\${workspaceFolder}";
+        #  stopOnEntry = false;
+        #  args = [];
         #}
       ];
     };
