@@ -78,11 +78,6 @@
             end
           '';
           cwd = "\${workspaceFolder}";
-          # Exception-Handling konfigurieren:
-          initCommands = [
-            # Nur bei UNCAUGHT exceptions stoppen, nicht bei caught
-            "breakpoint set -E c++ -h false -u true"
-          ];
         }
         #{
         #  name = "cppdbg";
@@ -250,5 +245,10 @@
     require('dap').listeners.after.event_initialized['dapui_config'] = require('dapui').open
     require('dap').listeners.before.event_terminated['dapui_config'] = require('dapui').close
     require('dap').listeners.before.event_exited['dapui_config'] = require('dapui').close
+
+    -- Exception Breakpoints deaktivieren/konfigurieren
+    require('dap').defaults.fallback.exception_breakpoints = {}
+    -- Oder nur uncaught:
+    -- require('dap').defaults.fallback.exception_breakpoints = {'uncaught'}
   '';
 }
