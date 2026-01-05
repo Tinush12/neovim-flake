@@ -99,6 +99,96 @@
       action = "<C-i>";
       options.desc = "Go to next pos";
     }
+    {
+      mode = "n";
+      key = "<leader>1";
+      action = "<cmd>BufferLineGoToBuffer 1<cr>";
+      options = {
+        desc = "Buffer 1";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>2";
+      action = "<cmd>BufferLineGoToBuffer 2<cr>";
+      options = {
+        desc = "Buffer 2";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>3";
+      action = "<cmd>BufferLineGoToBuffer 3<cr>";
+      options = {
+        desc = "Buffer 3";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>4";
+      action = "<cmd>BufferLineGoToBuffer 4<cr>";
+      options = {
+        desc = "Buffer 4";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>5";
+      action = "<cmd>BufferLineGoToBuffer 5<cr>";
+      options = {
+        desc = "Buffer 5";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>6";
+      action = "<cmd>BufferLineGoToBuffer 6<cr>";
+      options = {
+        desc = "Buffer 6";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>7";
+      action = "<cmd>BufferLineGoToBuffer 7<cr>";
+      options = {
+        desc = "Buffer 7";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>8";
+      action = "<cmd>BufferLineGoToBuffer 8<cr>";
+      options = {
+        desc = "Buffer 8";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>9";
+      action = "<cmd>BufferLineGoToBuffer 9<cr>";
+      options = {
+        desc = "Buffer 9";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>0";
+      action = "<cmd>BufferLineGoToBuffer -1<cr>";
+      options = {
+        desc = "Last Buffer";
+        silent = true;
+      };
+    }
     # ---------------------
     # Window Navigation
     # ---------------------
