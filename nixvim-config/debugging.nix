@@ -15,11 +15,18 @@
           args = ["-i" "dap"];
         };
       };
-      #executables = {
-      #  cppdbg = {
-      #    command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
-      #  };
-      #};
+      executables = {
+        cppdbg = {
+          command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
+        };
+      };
+      adapters = {
+        executables = {
+          lldb = {
+            command = "${pkgs.lldb}/bin/lldb-dap"; # oder lldb-vscode bei älteren Versionen
+          };
+        };
+      };
       servers = {
         codelldb = {
           host = "127.0.0.1";
@@ -48,6 +55,19 @@
           '';
           cwd = "\${workspaceFolder}";
           stopAtEntry = true;
+          args = [];
+        }
+        {
+          name = "LLDB Native";
+          type = "lldb";
+          request = "launch";
+          program.__raw = ''
+            function()
+              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            end
+          '';
+          cwd = "\${workspaceFolder}";
+          stopOnEntry = false;
           args = [];
         }
         {
