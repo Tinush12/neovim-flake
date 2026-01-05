@@ -101,6 +101,15 @@
     }
     {
       mode = "n";
+      key = "ö";
+      action = "<cmd>b#<cr>";
+      options = {
+        desc = "Switch to last buffer";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>1";
       action = "<cmd>BufferLineGoToBuffer 1<cr>";
       options = {
@@ -192,12 +201,12 @@
     # ---------------------
     # Window Navigation
     # ---------------------
-    {
-      mode = "n";
-      key = " <leader>wn";
-      action = "<cmd>enew<CR>";
-      options.desc = "Open a new empty Window";
-    }
+    #{
+    #  mode = "n";
+    #  key = " <leader>wn";
+    #  action = "<cmd>enew<CR>";
+    #  options.desc = "Open a new empty Window";
+    #}
     {
       mode = "n";
       key = "<leader>sh";
