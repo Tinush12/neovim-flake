@@ -20,11 +20,9 @@
           command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
         };
       };
-      adapters = {
-        executables = {
-          lldb = {
-            command = "${pkgs.lldb}/bin/lldb-dap"; # oder lldb-vscode bei älteren Versionen
-          };
+      executables = {
+        lldb = {
+          command = "${pkgs.lldb}/bin/lldb-dap"; # oder lldb-vscode bei älteren Versionen
         };
       };
       servers = {
