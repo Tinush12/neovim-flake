@@ -78,6 +78,11 @@
             end
           '';
           cwd = "\${workspaceFolder}";
+          # Exception-Handling konfigurieren:
+          initCommands = [
+            # Nur bei UNCAUGHT exceptions stoppen, nicht bei caught
+            "breakpoint set -E c++ -h false -u true"
+          ];
         }
         #{
         #  name = "cppdbg";
