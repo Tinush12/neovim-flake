@@ -25,12 +25,12 @@
       };
       # Uncommmend to use other debugger
 
-      #executables = {
-      #  gdb = {
-      #    command = "${pkgs.gdb}/bin/gdb";
-      #    args = ["-i" "dap"];
-      #  };
-      #};
+      executables = {
+        gdb = {
+          command = "${pkgs.gdb}/bin/gdb";
+          args = ["-i" "dap"];
+        };
+      };
       #executables = {
       #  cppdbg = {
       #    command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
@@ -57,19 +57,19 @@
         }
         # Uncommmend to use other debugger
 
-        #{
-        #  name = "GDB";
-        #  type = "gdb";
-        #  request = "launch";
-        #  program.__raw = ''
-        #    function()
-        #      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        #    end
-        #  '';
-        #  cwd = "\${workspaceFolder}";
-        #  stopAtEntry = true;
-        #  args = [];
-        #}
+        {
+          name = "GDB";
+          type = "gdb";
+          request = "launch";
+          program.__raw = ''
+            function()
+              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            end
+          '';
+          cwd = "\${workspaceFolder}";
+          stopAtEntry = true;
+          args = [];
+        }
         #{
         #  name = "LLDB Native";
         #  type = "lldb";
