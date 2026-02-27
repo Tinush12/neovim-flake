@@ -54,5 +54,12 @@
         transparent = true;
       };
     };
+
+    tokyonight = {
+      enable = false;
+      settings = {
+        transparent = true;
+      };
+    };
   };
 }
