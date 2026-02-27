@@ -37,7 +37,7 @@
       };
     };
     kanagawa = {
-      enable = true;
+      enable = false;
       settings = {
         colors = {
           theme = {
@@ -51,12 +51,12 @@
         };
         commentStyle.italic = true;
         theme = "wave"; # wave lotus
-        transparent = true;
+        #transparent = true;
       };
     };
 
     tokyonight = {
-      enable = false;
+      enable = true;
       settings = {
         transparent = true;
       };
