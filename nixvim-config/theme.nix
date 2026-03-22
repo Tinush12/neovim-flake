@@ -37,7 +37,7 @@
       };
     };
     kanagawa = {
-      enable = true;
+      enable = false;
       settings = {
         colors = {
           theme = {
@@ -56,7 +56,7 @@
     };
 
     tokyonight = {
-      enable = false;
+      enable = true;
       settings = {
         transparent = true;
       };
