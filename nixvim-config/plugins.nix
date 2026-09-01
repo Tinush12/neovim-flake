@@ -244,7 +244,7 @@
     #      };
     #    };
     avante = {
-      enable = true;
+      enable = false;
       autoLoad = true;
       settings = {
         mappings = {
