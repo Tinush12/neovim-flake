@@ -244,9 +244,24 @@
     #      };
     #    };
     avante = {
-      enable = false;
+      enable = true;
       autoLoad = true;
       settings = {
+        mappings = {
+          suggestion = {
+            accept = "<C-l>";
+            next = "<M-]>";
+            prev = "<M-[>";
+            dismiss = "<C-e>";
+          };
+        };
+        behaviour = {
+          auto_suggestions = true;
+        };
+        suggestion = {
+          debounce = 1600;
+          throttle = 800;
+        };
         diff = {
           autojump = true;
           debug = false;
@@ -261,17 +276,19 @@
         hints = {
           enabled = true;
         };
-        auto_suggestions_provider = "ollama";
-        provider = "ollama";
+        auto_suggestions_provider = "llama_cpp";
+        provider = "llama_cpp";
         providers = {
-          "ollama" = {
-            endpoint = "http://localhost:11434";
+          "llama_cpp" = {
+            __inherited_from = "openai";
+            endpoint = "http://localhost:8080/v1";
+            model = "Ternary-Bonsai-27B-Q2_0.gguf";
+            api_key_name = "";
+            timeout = 60000;
             extra_request_body = {
-              max_tokens = 4096;
+              max_tokens = 8192;
               temperature = 0;
             };
-            #model = "gpt-oss:20b";
-            model = "qwen3:14b-160k";
           };
         };
         windows = {
